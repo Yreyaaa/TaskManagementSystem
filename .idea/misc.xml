@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/JWTApp/pom.xml" />
         <option value="$PROJECT_DIR$/TaskMangSystem/pom.xml" />
+        <option value="$PROJECT_DIR$/TaskManagementSystem/pom.xml" />
       </list>
     </option>
   </component>
