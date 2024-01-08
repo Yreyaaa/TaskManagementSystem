@@ -99,7 +99,7 @@ class ClientControllerTest {
         var request = MockMvcRequestBuilders.get("/registration");
 
 
-        mockMvc.perform(request).andExpect(MockMvcResultMatchers.content().json(ow.writeValueAsString(Map.of("clientName: \"<введите имя пользователя>\"", "password: \"<введите имя пароль>\"\""))));
+        mockMvc.perform(request).andExpect(MockMvcResultMatchers.content().json(ow.writeValueAsString(Map.of("clientName: \"<введите имя пользователя>\"", "password: \"<введите пароль>\"\""))));
 
     }
 

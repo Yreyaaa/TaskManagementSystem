@@ -74,7 +74,7 @@ public class ClientController {
     @GetMapping("/registration")
     public Map<String, String> registration() {
 
-        return Map.of("clientName: \"<введите имя пользователя>\"", "password: \"<введите имя пароль>\"\"");
+        return Map.of("clientName: \"<введите имя пользователя>\"", "password: \"<введите пароль>\"\"");
     }
 
     @Operation(summary = "Регестрация пользователеля", description = "Принимает логин, пароль и регестрирует нового пользователя")

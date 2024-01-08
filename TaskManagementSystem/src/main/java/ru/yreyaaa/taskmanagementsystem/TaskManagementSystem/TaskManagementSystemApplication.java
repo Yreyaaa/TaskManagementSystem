@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 
-public class TaskManagementSystemApplication {
+public class TaskManagementSystemApplication  {
 
     public static void main(String[] args) {
         SpringApplication.run(TaskManagementSystemApplication.class, args);

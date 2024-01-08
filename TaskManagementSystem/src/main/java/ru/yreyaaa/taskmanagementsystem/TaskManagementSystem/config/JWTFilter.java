@@ -20,6 +20,7 @@ import java.io.IOException;
 public class JWTFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtUtil;
+
     private final ClientDetailsService clientDetailsService;
 
     public JWTFilter(JWTUtil jwtUtil, ClientDetailsService clientDetailsService) {
