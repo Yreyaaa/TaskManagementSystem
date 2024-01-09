@@ -8,12 +8,12 @@
 `git init` в выбранном каталоге и
 `git clone https://github.com/Yreyaaa/TaskManagementSystem.git`
 Конфигурация приложения находиться в файле TaskManagementSystem/src/main/resources/application.properties и может быть изменена перед запуском.
-***Значения базовых параметров:
+***Значения базовых параметров:**
 - spring.datasource.url=jdbc:postgresql://localhost:5433/postgres
 - spring.datasource.username=postgres
 - spring.datasource.password=postgres
 - server.port=8091
-- jwt_secret=YREYAAA**
+- jwt_secret=YREYAAA
 ### Вариант 1. Запуск с помощью Docker Compose:
 Для запуска проекта с помощью Docker Compose достаточно загрузить только каталог TaskManagementSystem\docker. Откройте каталог TaskManagementSystem\docker через терминал и выполните следующие команды, при запущенном Docker engine на компьютере:
 `docker-compose -f docker-compose.yml up --no-start` - для создания образов.
