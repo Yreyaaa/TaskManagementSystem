@@ -16,20 +16,26 @@ jwt_secret=YREYAAA
 docker-compose -f docker-compose.yml up --no-start для создания образов
 docker-compose -f docker-compose.yml start для запуска контейнеров
 Инициализация схемы базы данных PostgreSQL происходит автоматически с помощью скрипта init.sql
-### Вариант 2. Запуск из среды разработки на примере IntelliJ IDEA
+### Вариант 2. Запуск из среды разработки на примере IntelliJ IDEA:
 Для запуска проекта из среды разработки, необходимо прадварительно настроить базу данных PostgreSQL (также можно воспользоваться Docker контейнером с базой данных из первого варианта). Создайте базу данных, примените к ней SQL код из файла CreatingTablesInDatabase.sql для инициализации схемы базы данных. Убедитесь что параметры базы данных, такие как: имя базы данных, логин, пароль, адрес порта - соответствуют файлу application.properties, отредактируйте его при необходимости. Запустите приложение выполнив команду run на основном классе - TaskManagementSystemApplication.java
-### Вариант 2. Запуск JAR файла
-Для запуска JAR файла проекта, выполните вышеописанные действия  по насройке базы данных (также можно воспользоваться Docker контейнером с базой данных из первого варианта). JAR файл, находящийся в каталоге TaskManagementSystem/target/TaskManagementSystem-0.0.1-SNAPSHOT.jar собран с значениями параметров из файла application.properties, если вы изменили эти параметры для соответствия вашей базе данных, то соберите JAR файл заново с помощью команды  mvn clean package spring-boot:repackage в каталоге проекта. Запустите TaskManagementSystem-0.0.1-SNAPSHOT.jar с помощью команды  java -jar TaskManagementSystem-0.0.1-SNAPSHOT.jar в каталоге с файлом.
+### Вариант 2. Запуск JAR файла:
+Для запуска JAR файла проекта, выполните вышеописанные действия  по насройке базы данных (также можно воспользоваться Docker контейнером с базой данных из первого варианта). JAR файл, находящийся в каталоге TaskManagementSystem/target/TaskManagementSystem-0.0.1-SNAPSHOT.jar собран с значениями* параметров из файла application.properties, если вы изменили эти параметры для соответствия вашей базе данных, то соберите JAR файл заново с помощью команды  mvn clean package spring-boot:repackage в каталоге проекта. Запустите TaskManagementSystem-0.0.1-SNAPSHOT.jar с помощью команды  java -jar TaskManagementSystem-0.0.1-SNAPSHOT.jar в каталоге с файлом.
 
-## Работа с программой
-После запуска Spring Boot приложения к нему можно обращаться по URL адресу http://localhost:8091 (если параметр server.port=8091 из application.properties не был изменен). Запросы можно выполнять с помощбю Postman, также, поскольку в приложении насроен Swwagger ui, можно удобно ознакомится с его функционалом с помощбю страници визуализации API, находящейся по URL адресу http://localhost:8091/swagger-ui.html. На странице представлены все пользовательские эндпоинты с пояснительными коментариями описанием формата взодных данны для запросов. Запросы можно выполнять c помощбю кнопки Try it out, запросы помеченные замком, требуют авторизации, производимой нажатием на этот замок. Рекомендуется начать с запроса регистрации - http://localhost:8091/swagger-ui/index.html#/client-controller/registration для получения JWT токена, который понадобится для всех операций требующих авторизации.
+## Работа с программой:
+После запуска Task Management System Application приложения к нему можно обращаться по URL адресу http://localhost:8091 (если параметр server.port=8091 из application.properties не был изменен).
+Запросы можно выполнять с помощбю Postman, также, поскольку в приложении насроен Swwagger ui, можно удобно ознакомится с его функционалом с помощбю страници визуализации API, находящейся по URL адресу http://localhost:8091/swagger-ui.html. На странице представлены все пользовательские эндпоинты с пояснительными коментариями и описанием формата взодных данных для запросов. Запросы можно выполнять c помощью кнопки Try it out. Запросы помеченные замком, требуют авторизации, производимой нажатием на этот замок. Рекомендуется начать с запроса регистрации - http://localhost:8091/swagger-ui/index.html#/client-controller/registration для получения JWT токена, который понадобится для всех операций требующих авторизации, время действия токена - 120 минут, новый можно получить для зарегесрированного пользователя, выполнив запрос /login.
 
-**Формат запроса** `http://localhost:8080/str?str=<обрабатываемая строка>`
-
-**Обрабатываема строка** - может представлять собой произвольный набор символов без пробелов (пробел можно заменить на %20), длинной 1 и более, при отправке строки нулевой длинны, программа сообщает об ошибке ввода
-
-**Формат исходящих параметров** - строка с информацией о частоте встречаемости символов во входящей строке, в порядке убывания.
-
-**Пример:**
-**Запрос** - http://localhost:8080/str?str=RequestForTesting
-**Ответ** - "e":3, "s":2, "t":2, "F":1, "g":1, "i":1, "n":1, "o":1, "q":1, "R":1, "r":1, "T":1, "u":1
+**Все эндпоинты приложения:**
+`POST http://localhost:8091/login`
+`GET http://localhost:8091/registration`
+`POST http://localhost:8091/registration`
+`DELETE http://localhost:8091/{clientName}/delete`
+`GET http://localhost:8091/tasks/getAllTasks`
+`POST http://localhost:8091/tasks/createTask`
+`GET http://localhost:8091/tasks/{title}`
+`GET http://localhost:8091/tasks/getTaskByAuthor/{authorName}`
+`GET http://localhost:8091/tasks/getTaskByExecutor/{executorName}`
+`PATCH http://localhost:8091/tasks/{title}/updateStatus/{newStatus}`
+`PATCH http://localhost:8091/tasks/{title}/update`
+`PATCH http://localhost:8091/tasks/{title}/addComment`
+`DELETE http://localhost:8091/tasks/{title}/delete`

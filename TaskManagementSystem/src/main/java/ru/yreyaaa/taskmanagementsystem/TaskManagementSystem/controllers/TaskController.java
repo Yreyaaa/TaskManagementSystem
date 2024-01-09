@@ -216,7 +216,7 @@ public class TaskController {
 
     @Operation(security = {@SecurityRequirement(name = "JWT")}, summary = "Добавить комментарий к задаче", description = "Принимает JSON с коментарием к указанной задаче")
     @PatchMapping("/{title}/addComment")
-    public Map<String, String> addCommentToTask(@PathVariable @Parameter(description = "Название задачи для комментрования") String title, @Valid @RequestBody  @Parameter(description = "JSON с текстом комментария, автор определяется автоматически")CommentDTO commentDTO, BindingResult bindingResult) {
+    public Map<String, String> addCommentToTask(@PathVariable @Parameter(description = "Название задачи для комментрования") String title, @Valid @RequestBody @Parameter(description = "JSON с текстом комментария, автор определяется автоматически") CommentDTO commentDTO, BindingResult bindingResult) {
 
 
         Client currentClient = getCurentClient();

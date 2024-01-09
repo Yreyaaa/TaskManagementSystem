@@ -55,7 +55,7 @@ public class ClientController {
         this.authenticationManager = authenticationManager;
     }
 
-    @Operation(summary = "Вход в систему", description = "Позволяет получить JWT токен для зарегистрированного пользователя, время действия токена - 60 минут")
+    @Operation(summary = "Вход в систему", description = "Позволяет получить новый JWT токен для зарегистрированного пользователя, время действия токена - 120 минут")
     @PostMapping("/login")
     public Map<String, String> performLogin(@Valid @RequestBody @Parameter(description = "JSON с логином и паролем пользователя") ClientDTO clientDto, BindingResult bindingResult) {
         UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(clientDto.getClientName(), clientDto.getPassword());
@@ -77,7 +77,7 @@ public class ClientController {
         return Map.of("clientName: \"<введите имя пользователя>\"", "password: \"<введите пароль>\"\"");
     }
 
-    @Operation(summary = "Регестрация пользователеля", description = "Принимает логин, пароль и регестрирует нового пользователя")
+    @Operation(summary = "Регестрация пользователеля", description = "Принимает логин, пароль и регестрирует нового пользователя, возвращая JWT токен, время действия токена 120 минут")
 
     @PostMapping("/registration")
     public Map<String, String> registration(@Valid @RequestBody @Parameter(description = "JSON с логином и паролем пользователя") ClientDTO clientDto, BindingResult bindingResult) {
